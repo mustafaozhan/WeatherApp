@@ -20,24 +20,24 @@ struct NewCityView : View {
         NavigationView {
             List {
                 Section {
-                    TextField($search, placeholder: Text("Search City")) {
+                    TextField("Search City", text: $search){
                         self.cityFinder.search(self.search)
                     }
                 }
                 
                 Section {
-                    ForEach(cityFinder.results.identified(by: \.self)) { result in
+                    ForEach(cityFinder.results,id: \.self) { result in
                         Button(action: {
                             self.addCity(from: result)
                             self.isAddingCity = false
                         }) {
                             Text(result)
-                            }
-                            .foregroundColor(.black)
+                        }
+                        .foregroundColor(.black)
                     }
                 }
-                }
-                .navigationBarTitle(Text("Add City"))
+            }
+            .navigationBarTitle(Text("Add City"))
                 .navigationBarItems(leading: cancelButton)
                 .listStyle(.grouped)
         }

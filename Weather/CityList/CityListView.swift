@@ -32,15 +32,15 @@ struct CityListView : View {
     }
     
     private var addButton: some View {
-        Button(action: {
-            self.isAddingCity = true
-            self.isEditing = false
-        }) {
-            Image(systemName: "plus.circle.fill")
-                .font(.title)
+            Button(action: {
+                self.isAddingCity = true
+                self.isEditing = false
+            }) {
+                Image(systemName: "plus.circle.fill")
+//                    .font(.title)
             }
-            .presentation(isAddingCity ? newCityView : nil)
-    }
+//                .presentation(isAddingCity ? newCityView : nil)
+        }
     
     private func delete(at offsets: IndexSet) {
         for index in offsets {
@@ -59,10 +59,8 @@ struct CityListView : View {
         cityStore.cities.insert(contentsOf: removeCities, at: destination)
     }
     
-    private var newCityView: Modal {
-        Modal(NewCityView(isAddingCity: $isAddingCity).environmentObject(cityStore)) {
-            self.isAddingCity = false
-        }
+    private var newCityView: NewCityView {
+        NewCityView(isAddingCity: $isAddingCity)
     }
     
 }
