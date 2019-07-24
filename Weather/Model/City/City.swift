@@ -11,12 +11,12 @@ import Combine
 
 class City: BindableObject {
     
-    var didChange = PassthroughSubject<City, Never>()
+    var willChange = PassthroughSubject<City, Never>()
     
     var name: String
     var weather: Weather? {
         didSet {
-            didChange.send(self)
+            willChange.send(self)
         }
     }
     
